@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/tb">
+
+    <TextView android:id="@+id/_tb_tv_title" style="@style/tb_title"/>
+
+    <TextView android:id="@+id/_tb_tv_right" style="@style/tb_tv_right"/>
+
+</RelativeLayout>

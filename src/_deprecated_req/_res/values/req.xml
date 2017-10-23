@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="dreq_bg_overlay">#aaffffff</color>
+    <color name="dreq_bg_content">#eeeeeeee</color>
+    <color name="dreq_bg_pb">@android:color/holo_blue_light</color>
+
+    <style name="pb" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:theme">@style/pb_theme</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="pb_theme" parent="Theme.AppCompat">
+        <!--<item name="colorControlNormal"></item>-->
+        <item name="colorControlActivated">@color/dreq_bg_pb</item>
+        <!--<item name="android:colorAccent"></item>-->
+    </style>
+
+</resources>

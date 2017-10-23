@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/tb">
+    <ImageView android:id="@+id/_iv_back" style="@style/tb_iv_left" android:src="@mipmap/i_edit_back" />
+    <TextView android:id="@+id/_tb_tv_title" style="@style/tb_title" tools:text="test" />
+    <TextView android:id="@+id/_tv_save" style="@style/tb_tv_right" tools:text="保存" />
+
+</RelativeLayout>

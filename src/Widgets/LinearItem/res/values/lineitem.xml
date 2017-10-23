@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="LinearItem_height_default">48dp</dimen>
+
+    <dimen name="LinearItem_p_h">12dp</dimen>
+    <dimen name="LinearItem_p_v">6dp</dimen>
+    <dimen name="LinearItem_gapLeft">8dp</dimen>
+    <dimen name="LinearItem_gapRight">8dp</dimen>
+
+
+    <declare-styleable name="LinearItem">
+        <attr name="paddingHorizontal" format="reference|dimension"/>
+        <attr name="paddingVertical" format="reference|dimension"/>
+        <attr name="gapLeft" format="reference|dimension"/>
+        <attr name="gapRight" format="reference|dimension"/>
+        <attr name="iconLeft" format="reference"/>
+        <attr name="iconSizeLeft" format="reference|dimension"/>
+        <attr name="textSizeLeft" format="reference|dimension"/>
+        <attr name="textColorLeft" format="reference|color"/>
+        <attr name="textLeft" format="string"/>
+        <attr name="iconRight" format="reference"/>
+        <attr name="iconSizeRight" format="reference|dimension"/>
+        <attr name="textSizeRight" format="reference|dimension"/>
+        <attr name="textColorRight" format="reference|color"/>
+        <attr name="textRight" format="string"/>
+    </declare-styleable>
+
+
+
+    <style name="LinearItem_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:paddingLeft">@dimen/lineitem_padding_horizontal</item>-->
+        <!--<item name="android:paddingRight">@dimen/lineitem_padding_horizontal</item>-->
+        <!--<item name="android:paddingTop">@dimen/lineitem_padding_vertical</item>-->
+        <!--<item name="android:paddingBottom">@dimen/lineitem_padding_vertical</item>-->
+    </style>
+    <style name="LinearItem_section">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|start|left</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="LinearItem_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+    </style>
+    <style name="LinearItem_icon" parent="LinearItem_item">
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+</resources>

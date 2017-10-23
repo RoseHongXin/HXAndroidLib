@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="tb_height">48dp</dimen>
+    <dimen name="tb_txt">12sp</dimen>
+    <dimen name="tb_txt_title">18sp</dimen>
+    <dimen name="tb_icon_txt_gap">1dp</dimen>
+    <dimen name="tb_padding_vertical">8dp</dimen>
+    <dimen name="tb_item_width">48dp</dimen>
+    <color name="tb_txt">@android:color/white</color>
+
+    <!--based on relativelayout-->
+
+    <style name="tb">
+        <item name="android:layout_width">match_parent</item>
+        <!--<item name="android:layout_height">@dimen/tb_height</item>-->
+        <!--<item name="android:layout_height">@dimen/tb_height</item>-->
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+        <item name="android:paddingLeft">@dimen/l_p_small</item>
+        <item name="android:paddingRight">@dimen/l_p_small</item>
+        <!--<item name="android:paddingTop">@dimen/tb_padding_vertical</item>-->
+        <!--<item name="android:paddingBottom">@dimen/tb_padding_vertical</item>-->
+        <!--<item name="android:background">@color/colorPrimary</item>-->
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+    <style name="tb_item">
+        <item name="android:layout_height">@dimen/tb_height</item>
+        <!--<item name="android:layout_height">match_parent</item>-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">@dimen/tb_item_width</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">@dimen/tb_icon_txt_gap</item>
+        <item name="android:background">@drawable/sl_tb_iv</item>
+    </style>
+    <style name="tb_tv" parent="tb_item">
+        <!--<item name="android:textSize">@dimen/tb_txt</item>-->
+        <item name="android:textColor">@color/tb_txt</item>
+    </style>
+    <style name="tb_title" parent="tb_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/tb_txt_title</item>
+        <item name="android:textColor">@color/tb_txt</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <style name="tb_iv_left" parent="tb_item">
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+    </style>
+    <style name="tb_iv_right" parent="tb_item">
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+    <style name="tb_tv_right" parent="tb_tv">
+        <!--<item name="android:textSize">@dimen/tb_txt</item>-->
+        <item name="android:textColor">@color/tb_txt</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+</resources>
