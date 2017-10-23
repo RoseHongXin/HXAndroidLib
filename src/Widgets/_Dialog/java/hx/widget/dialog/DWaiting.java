@@ -95,20 +95,20 @@ public class DWaiting extends DialogFragment{
         }
     }
 
-    public static DialogFragment create(Activity act){
+    public static DWaiting create(Activity act){
         return create(act, null);
     }
-    public static DialogFragment create(Activity act, String hint){
+    public static DWaiting create(Activity act, String hint){
         return create(act, hint, true);
     }
 
-    public static DialogFragment force(Activity act, String hint){
+    public static DWaiting force(Activity act, String hint){
         return create(act, hint, false);
     }
-    public static DialogFragment force(Activity act){
+    public static DWaiting force(Activity act){
         return create(act, null, false);
     }
-    public static DialogFragment create(Activity act, String hint, boolean cancelable){
+    public static DWaiting create(Activity act, String hint, boolean cancelable){
         DWaiting dWaiting = new DWaiting();
         dWaiting.mHint = hint;
         dWaiting.mCancelable = cancelable;
