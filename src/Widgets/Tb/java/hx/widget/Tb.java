@@ -48,6 +48,14 @@ public class Tb {
     public static <ACT extends ABase> View create(ACT act, String title){
         return create(act, R.mipmap.i_back, title, null);
     }
+    public static <ACT extends ABase> View create(ACT act, @DrawableRes int iconRes, String title){
+        View _tb = getLayout(act, R.layout.tb_left_iv);
+        ImageView _tb_iv_left = (ImageView) _tb.findViewById(R.id._tb_iv_left);
+        _tb_iv_left.setImageResource(iconRes);
+        _tb_iv_left.setOnClickListener(view -> act.finish());
+        ((TextView)_tb.findViewById(R.id._tb_tv_title)).setText(TextUtils.isEmpty(title) ? "" : title);
+        return _tb;
+    }
     public static <ACT extends ABase> View create(ACT act, String title, View.OnClickListener listener){
         return create(act, R.mipmap.i_back, title, listener);
     }

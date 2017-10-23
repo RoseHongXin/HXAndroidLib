@@ -26,7 +26,7 @@ public class VhBase<T>  extends RecyclerView.ViewHolder  {
         this.mAct = adapter.mAct;
         this._rv = adapter._rv;
     }
-    private VhBase(View itemView){
+    public VhBase(View itemView){
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
