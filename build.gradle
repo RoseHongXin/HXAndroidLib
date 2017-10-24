@@ -1,13 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.butterknife'
+apply from:"HXModuleConfig.gradle"
+
+def props = project.ext.android;
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    compileSdkVersion props.compileSdkVersion
+    buildToolsVersion props.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion props.minSdkVersion
+        targetSdkVersion props.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -41,14 +45,13 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:26.0.0-alpha1'
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:percent:26.0.0-alpha1'
-    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
-    compile 'com.google.dagger:dagger:2.8'
-    compile 'com.jakewharton:butterknife:8.2.1'
+    compile 'com.android.support:support-v4:' + props.dependencyVersion
+    compile 'com.android.support:appcompat-v7:' + props.dependencyVersion
+    compile 'com.android.support:cardview-v7:' + props.dependencyVersion
+    compile 'com.android.support:design:' + props.dependencyVersion
+    compile 'com.android.support:percent:' + props.dependencyVersion
+    compile 'com.android.support:recyclerview-v7:' + props.dependencyVersion
+    compile 'com.jakewharton:butterknife:8.4.0'
     compile 'io.reactivex:rxjava:1.0.12'
     compile 'io.reactivex:rxandroid:0.25.0'
     compile 'com.alibaba:fastjson:1.2.24'
