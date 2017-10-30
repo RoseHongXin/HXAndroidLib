@@ -6,4 +6,22 @@ ext{
             targetSdkVersion:25,
             dependencyVersion:'25.3.1'
     ]
+    dependencies = [
+            supportv4: 'com.android.support:support-v4:' + android.dependencyVersion,
+            appcompatv7: 'com.android.support:appcompat-v7:' + android.dependencyVersion,
+            cardviewv7: 'com.android.support:cardview-v7:' + android.dependencyVersion,
+            design: 'com.android.support:design:' + android.dependencyVersion,
+            supportPercnet: 'com.android.support:percent:' + android.dependencyVersion,
+            recyclerviewv7: 'com.android.support:recyclerview-v7:' + android.dependencyVersion,
+            butterknife: 'com.jakewharton:butterknife:8.4.0',
+            fastjson: 'com.alibaba:fastjson:1.2.39',
+            fastjsonAndroid: 'com.alibaba:fastjson:1.1.64.android',
+            rxjava: 'io.reactivex:rxjava:1.0.12',
+            rxandroid: 'io.reactivex:rxandroid:0.25.0',
+            disklrucache: 'com.jakewharton:disklrucache:2.0.2',
+            galleryfinal: 'cn.finalteam:galleryfinal:1.4.8.7'
+    ]
 }
+
+//    compile 'de.hdodenhof:circleimageview:2.1.0'
+//    compile 'cn.finalteam:galleryfinal:1.4.8.7'

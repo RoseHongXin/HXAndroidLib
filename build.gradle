@@ -4,6 +4,7 @@ apply plugin: 'com.jakewharton.butterknife'
 apply from:"HXModuleConfig.gradle"
 
 def props = project.ext.android;
+def libraries = project.ext.dependencies;
 
 android {
     compileSdkVersion props.compileSdkVersion
@@ -17,7 +18,7 @@ android {
     }
     buildTypes {
         release {
-//            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -51,22 +52,21 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:' + props.dependencyVersion
-    compile 'com.android.support:appcompat-v7:' + props.dependencyVersion
-    compile 'com.android.support:cardview-v7:' + props.dependencyVersion
-    compile 'com.android.support:design:' + props.dependencyVersion
-    compile 'com.android.support:percent:' + props.dependencyVersion
-    compile 'com.android.support:recyclerview-v7:' + props.dependencyVersion
-    compile 'com.jakewharton:butterknife:8.4.0'
-    compile 'io.reactivex:rxjava:1.0.12'
-    compile 'io.reactivex:rxandroid:0.25.0'
-    compile 'com.alibaba:fastjson:1.2.24'
-    compile 'com.alibaba:fastjson:1.1.56.android'
-    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
-    compile 'com.orhanobut:dialogplus:1.11@aar'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'cn.finalteam:galleryfinal:1.4.8.7'
-    compile 'com.jakewharton:disklrucache:2.0.2'
+
+    compile libraries.supportv4
+    compile libraries.appcompatv7
+    compile libraries.cardviewv7
+    compile libraries.design
+    compile libraries.supportPercnet
+    compile libraries.recyclerviewv7
+
+    compile libraries.butterknife
+    compile libraries.fastjson
+    compile libraries.fastjsonAndroid
+    compile libraries.rxjava
+    compile libraries.rxandroid
+    compile libraries.disklrucache
+    compile libraries.galleryfinal
 }
 
 void getDirs(List<String> list, dirs, String key){
@@ -77,21 +77,6 @@ void getDirs(List<String> list, dirs, String key){
         }
     }
 }
-
-
-
-//    compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
-//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
-//    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
-//compile 'cn.pedant.sweetalert:library:1.3'
-
-//    compile 'com.jakewharton.timber:timber:3.1.0'
-//    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-//    compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
-//    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
-//    compile 'com.squareup.okhttp:okhttp:2.5.0'
-//    compile 'com.squareup.okio:okio:1.6.0'
-//    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 
 //compile 'com.nineoldandroids:library:2.4.0'
 

@@ -2,17 +2,11 @@ package hx.components;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import java.util.List;
+
 import hx.lib.R;
-import hx.view.swiperefresh.SwipeRefreshContainer;
-import hx.widget.adapterview.VhBase;
-import hx.widget.adapterview.recyclerview.ApBase;
 import hx.widget.adapterview.recyclerview.XRvLoader;
-import hx.widget.adapterview.swiperefresh.SwipeRefreshLoader;
-import rx.Observable;
 
 /**
  * Created by Rose on 3/1/2017.

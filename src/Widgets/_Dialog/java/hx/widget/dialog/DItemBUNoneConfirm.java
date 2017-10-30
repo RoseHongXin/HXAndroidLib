@@ -3,22 +3,17 @@ package hx.widget.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 import hx.lib.R;
-import hx.view.sv.WheelView;
 import hx.widget.adapterview.VhBase;
 import hx.widget.adapterview.recyclerview.ApBase;
 
