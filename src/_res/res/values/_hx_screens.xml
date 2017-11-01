@@ -7,6 +7,12 @@
         <item name="android:orientation">vertical</item>
         <item name="android:background">@color/_bg</item>
     </style>
+    <style name="Fra.H">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/_bg</item>
+    </style>
     <style name="Fra.PH">
         <item name="android:paddingLeft">@dimen/l_p_h</item>
         <item name="android:paddingRight">@dimen/l_p_h</item>

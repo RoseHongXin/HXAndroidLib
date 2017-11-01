@@ -28,8 +28,9 @@ public abstract class Ap2Base<D extends Object> extends RecyclerView.Adapter<Vh2
     public RecyclerView _rv;
     private List<D> data = new ArrayList<>();
 
+    protected abstract int getViewType(int position, Object data);
     @SuppressWarnings("unchecked")
-    protected abstract <V extends Vh2Base> V getVh(Activity act, D data, int position);
+    protected abstract <V extends Vh2Base> V getVh(Activity act, D data, int viewType);
     protected abstract void bind(Vh2Base holder, D data, int position);
 
      protected Ap2Base(Activity act, RecyclerView rv){
@@ -49,7 +50,14 @@ public abstract class Ap2Base<D extends Object> extends RecyclerView.Adapter<Vh2
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        Object data = null;
+        try {
+            data = getData() == null || getData().isEmpty() ? null : getData().get(position);
+        }catch (ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            data = null;
+        }
+        return getViewType(position, data);
     }
 
     @Override
