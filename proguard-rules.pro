@@ -122,7 +122,7 @@
 
 
 ##  HXAnroidLib
-#-keep public class hx.kit.log.**
+-keep public class hx.components.**{*;}
 -keep public class hx.kit.**{*;}
 -keep public class hx.view.**{*;}
 -keep public class hx.widget.**{*;}
