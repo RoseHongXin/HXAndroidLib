@@ -45,7 +45,7 @@ public class DImgPicker {
 //                })
 //                .setContentBackgroundResource(android.R.color.transparent)
 //                .setMargin(24, 0, 24, 24)
-//                .create();
+//                .builder();
 //        dialog.show();
     }
 

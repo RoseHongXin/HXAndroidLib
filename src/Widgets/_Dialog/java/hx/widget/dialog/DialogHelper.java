@@ -31,7 +31,7 @@ public class DialogHelper {
         Window window = dialog.getWindow();
         if (window != null) {
             window.setGravity(gravity); //可设置dialog的位置
-            window.getDecorView().setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom); //消除边距
+            window.getDecorView().setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
             WindowManager.LayoutParams lp = window.getAttributes();
             DisplayMetrics metrics = new DisplayMetrics();
             window.getWindowManager().getDefaultDisplay().getMetrics(metrics);

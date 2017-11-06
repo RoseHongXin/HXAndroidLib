@@ -21,7 +21,7 @@ public class FSwipeRefresh extends FBase {
     private InitCallback mCb;
 
     public static FSwipeRefresh newInstance(InitCallback cb) {
-        if(cb == null) throw new NullPointerException("Must specify a InitCallback");
+        if(cb == null) throw new NullPointerException("Must specify a OnInitCallback");
         FSwipeRefresh fragment = new FSwipeRefresh();
         fragment.mCb = cb;
         return fragment;
@@ -51,7 +51,7 @@ public class FSwipeRefresh extends FBase {
     }
 
     protected void sInit(InitCallback cb){
-        if(cb == null) throw new NullPointerException("Must specify a InitCallback");
+        if(cb == null) throw new NullPointerException("Must specify a OnInitCallback");
         this.mCb = cb;
         init();
     }

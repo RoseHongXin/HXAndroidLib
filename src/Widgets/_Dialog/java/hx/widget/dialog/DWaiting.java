@@ -124,7 +124,7 @@ public class DWaiting extends DialogFragment{
         dWaiting.mAct = (AppCompatActivity) act;
         return dWaiting;
     }
-    /* Call this method after create or force, carefully. */
+    /* Call this method after builder or force, carefully. */
     public DialogFragment show(){
         show(((AppCompatActivity)mAct).getSupportFragmentManager(), TAG);
         return this;

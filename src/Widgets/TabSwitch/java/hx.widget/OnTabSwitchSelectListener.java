@@ -1,5 +1,6 @@
 package hx.widget;
 
+import android.support.annotation.IdRes;
 import android.widget.TextView;
 
 /**
@@ -7,5 +8,5 @@ import android.widget.TextView;
  */
 
 public interface OnTabSwitchSelectListener {
-    void onSelected(int id, TextView _tv);
+    void onSelected(@IdRes int id, TextView _tv);
 }
