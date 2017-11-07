@@ -1,5 +1,6 @@
 package hx.widget;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -30,7 +32,6 @@ public class DInput extends DialogFragment{
 
     private final static String TAG = "DInput";
 
-
     private View _l_title;
     private TextView _tv_title;
     private TextInputLayout _til_edit;
@@ -43,9 +44,13 @@ public class DInput extends DialogFragment{
     private int mInputType = -1;
     private FragmentManager mFraManager;
     private boolean mFillAfterInput;
+    private boolean mAutoDismiss = true;
 
     public static Builder builder(){
         return new Builder();
+    }
+    public static Builder builder(Activity act){
+        return new Builder(act);
     }
 
     @Nullable
@@ -82,15 +87,16 @@ public class DInput extends DialogFragment{
         if(mInputType != -1) _et_edit.setInputType(mInputType);
         if(!TextUtils.isEmpty(mText)) _et_edit.setText(mText);
         _et_edit.setHint(mHint);
+        _et_edit.setSelection(_et_edit.getText().length());
         _et_edit.requestFocus();
     }
 
     public void _bt_editConfirm(){
-        dismiss();
         String text = _et_edit.getText().toString();
         if(!TextUtils.isEmpty(text)) {
             if(mFillAfterInput) _tv_anchor.setText(text);
-            if(mCb != null) mCb.onConfirm(text);
+            if(mCb != null) mCb.onConfirm(text, this);
+            if(mAutoDismiss) dismiss();
         }
     }
 
@@ -105,6 +111,10 @@ public class DInput extends DialogFragment{
 
         public Builder(){
             mDialog = new DInput();
+        }
+        public Builder(Activity act){
+            mDialog = new DInput();
+            mDialog.mFraManager = ((AppCompatActivity)act).getSupportFragmentManager();
         }
 
         public Builder title(String title){
@@ -131,6 +141,10 @@ public class DInput extends DialogFragment{
             mDialog.mBtTxt = btTxt;
             return this;
         }
+        public Builder autoDismiss(boolean auto){
+            mDialog.mAutoDismiss = auto;
+            return this;
+        }
         public Builder fraManager(FragmentManager fragmentManager){
             mDialog.mFraManager = fragmentManager;
             return this;
@@ -149,7 +163,7 @@ public class DInput extends DialogFragment{
     }
 
     public interface Callback {
-        void onConfirm(String str);
+        void onConfirm(String str, DInput dialog);
     }
 
 }

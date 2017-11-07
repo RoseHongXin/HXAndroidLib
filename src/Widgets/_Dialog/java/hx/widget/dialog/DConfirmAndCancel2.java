@@ -8,6 +8,8 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import hx.lib.R;
 
@@ -59,10 +61,13 @@ public class DConfirmAndCancel2 {
                 .setPositiveButton(mPositiveBtText, null)
                 .setNegativeButton(R.string.HX_cancel, null)
                 .create();
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.requestFeature(Window.FEATURE_NO_TITLE);
+        }
         dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             mOnClickListener.onClick(DConfirmAndCancel2.this, dialog);
         }));
-
         return dialog;
     }
 
