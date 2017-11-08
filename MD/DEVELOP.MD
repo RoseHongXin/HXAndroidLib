@@ -7,3 +7,6 @@ ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE
             Log4Android.e(this, "------------------" + rsi.pid + "\t" + rsi.processName + "\t" + rsi.importance + "\t" + rsi.importanceReasonPid + "\t" + rsi.importanceReasonComponent);
         }
 ```
+
+
+#### lambda在低版本手机(比如华为4.4pad),通过this::****调用父类的方法,会报错(找不到方法?).

@@ -1,4 +1,4 @@
-package hx.view.vp;
+package hx.widget;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

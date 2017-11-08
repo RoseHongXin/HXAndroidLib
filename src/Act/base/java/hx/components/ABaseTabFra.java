@@ -12,8 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 
 import hx.lib.R;
-import hx.view.vp.VpConfig;
-import hx.view.vp.VpNoSwipe;
+import hx.widget.VpConfig;
+import hx.widget.VpNoSwipe;
 
 /**
  * Created by Rose on 2017/4/24.

@@ -42,6 +42,7 @@ public class DWaiting extends DialogFragment{
 
     private final static String TAG = "DWaiting";
 
+    TextView _tv_hint;
     private boolean mCancelable;
     private String mHint;
     private AppCompatActivity mAct;
@@ -75,7 +76,7 @@ public class DWaiting extends DialogFragment{
             }
             return true;
         });
-        TextView _tv_hint = (TextView) view.findViewById(R.id._tv_hint);
+        _tv_hint = (TextView) view.findViewById(R.id._tv_hint);
         if(!TextUtils.isEmpty(mHint)) {
             _tv_hint.setVisibility(View.VISIBLE);
             _tv_hint.setText(mHint);
@@ -93,6 +94,14 @@ public class DWaiting extends DialogFragment{
             int height = (int)(width * 0.618f + 0.5f);
             window.setLayout(width, height);
         }
+    }
+
+    public void hint(String hint){
+//        if(_tv_hint != null){
+//            _tv_hint.setVisibility(View.VISIBLE);
+//            _tv_hint.setText(hint);
+//        }
+        mHint = hint;
     }
 
     public static DWaiting create(Activity act){
@@ -115,7 +124,7 @@ public class DWaiting extends DialogFragment{
         dWaiting.mAct = (AppCompatActivity) act;
         return dWaiting;
     }
-    /* Call this method after create or force, carefully. */
+    /* Call this method after builder or force, carefully. */
     public DialogFragment show(){
         show(((AppCompatActivity)mAct).getSupportFragmentManager(), TAG);
         return this;
