@@ -7,6 +7,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -58,7 +59,7 @@ public class DConfirmAndCancel2 {
         AlertDialog dialog =  new AlertDialog.Builder(mAct)
                 .setCancelable(false)
                 .setView(mLayout)
-                .setPositiveButton(mPositiveBtText, null)
+                .setPositiveButton(TextUtils.isEmpty(mPositiveBtText) ? mAct.getString(R.string.HX_confirm) : mPositiveBtText, null)
                 .setNegativeButton(R.string.HX_cancel, null)
                 .create();
         Window window = dialog.getWindow();
