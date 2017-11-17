@@ -97,11 +97,10 @@ public class DWaiting extends DialogFragment{
     }
 
     public void hint(String hint){
-//        if(_tv_hint != null){
-//            _tv_hint.setVisibility(View.VISIBLE);
-//            _tv_hint.setText(hint);
-//        }
         mHint = hint;
+        if(getDialog() != null && getDialog().isShowing()){
+            if(_tv_hint != null) _tv_hint.setText(mHint);
+        }
     }
 
     public static DWaiting create(Activity act){
