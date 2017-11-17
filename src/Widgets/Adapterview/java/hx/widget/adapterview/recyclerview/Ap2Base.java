@@ -16,7 +16,7 @@ import hx.widget.adapterview.VhBase;
  *
  * Based on item position as the viewType
  *
- * the subclass check the raw type of data to initiate viewholder as well as data bind.
+ * the subclass check the raw type of mData to initiate viewholder as well as mData bind.
  *
  */
 

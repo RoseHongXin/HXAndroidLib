@@ -53,7 +53,7 @@ public abstract class ABase extends AppCompatActivity {
 
 //            TypedValue typedValue = new TypedValue();
 //            getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-//            int color = typedValue.data;
+//            int color = typedValue.mData;
 //            _tb.setBackgroundColor(color);
 
             content.addView(_tb);

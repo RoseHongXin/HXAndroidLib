@@ -48,7 +48,7 @@ public class Cacher {
      *
      * Call this method at the app entry.
      * get(...) return generic java bean class
-     * getList(...) return List data.
+     * getList(...) return List mData.
      *
      *
      * */
