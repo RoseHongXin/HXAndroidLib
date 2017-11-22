@@ -6,6 +6,7 @@
     <color name="TabSwitch_bg_check">@color/colorAccent</color>
     <dimen name="TabSwitch_height">32dp</dimen>
     <dimen name="TabSwitch_border">1px</dimen>
+    <dimen name="TabSwitch_border_bold">1dp</dimen>
 
     <style name="TabSwitch_tv">
         <item name="android:layout_width">0dp</item>
@@ -13,6 +14,14 @@
         <item name="android:layout_height">@dimen/TabSwitch_height</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/sl_tab_switch</item>
+    </style>
+
+    <style name="TabSwitch_tv_reverse">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/TabSwitch_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/sl_tab_switch_reverse</item>
     </style>
 
 </resources>
