@@ -8,6 +8,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -85,8 +86,8 @@ public class DItemBUNoneConfirm extends DialogFragment{
         return texts(list);
     }
 
-    public DItemBUNoneConfirm show(FragmentManager fraManager){
-        show(fraManager, "DItemBUNoneConfirm");
+    public DItemBUNoneConfirm show(){
+        show(((AppCompatActivity)mAct).getSupportFragmentManager(), "DItemBUNoneConfirm");
         return this;
     }
 
