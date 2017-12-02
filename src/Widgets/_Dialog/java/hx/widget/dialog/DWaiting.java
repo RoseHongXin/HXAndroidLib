@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import hx.kit.log.Log4Android;
 import hx.lib.R;
 
 
@@ -45,7 +47,7 @@ public class DWaiting extends DialogFragment{
     TextView _tv_hint;
     private boolean mCancelable;
     private String mHint;
-    private AppCompatActivity mAct;
+    private Activity mAct;
 
     @NonNull
     @Override
@@ -120,12 +122,23 @@ public class DWaiting extends DialogFragment{
         DWaiting dWaiting = new DWaiting();
         dWaiting.mHint = hint;
         dWaiting.mCancelable = cancelable;
-        dWaiting.mAct = (AppCompatActivity) act;
+        dWaiting.mAct = act;
         return dWaiting;
     }
     /* Call this method after builder or force, carefully. */
     public DialogFragment show(){
-        show(((AppCompatActivity)mAct).getSupportFragmentManager(), TAG);
+        //预防Activity异常退出,或者切换太快,引起的getSupportFragmentManager() 为null.
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if (mAct != null && (mAct instanceof AppCompatActivity) && !mAct.isFinishing() && !mAct.isDestroyed())
+                    show(((AppCompatActivity) mAct).getSupportFragmentManager(), TAG);
+            } else {
+                if (mAct != null && !mAct.isFinishing())
+                    show(((AppCompatActivity) mAct).getSupportFragmentManager(), TAG);
+            }
+        }
+        catch (NullPointerException e){ Log4Android.w(this, "show exception, null pointer."); }
+        catch (IllegalStateException e) { Log4Android.w(this, "show exception, illegal state."); }
         return this;
     }
 
@@ -144,10 +157,22 @@ public class DWaiting extends DialogFragment{
 
     private static DialogFragment _show(Activity act, String hint, boolean cancelable){
         DWaiting dWaiting = new DWaiting();
+        dWaiting.mAct = act;
         dWaiting.mHint = hint;
         dWaiting.mCancelable = cancelable;
-        dWaiting.show(((AppCompatActivity)act).getSupportFragmentManager(), TAG);
-        return dWaiting;
+        return dWaiting.show();
     }
 
+    @Override
+    public void dismiss() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if (!mAct.isFinishing() && !mAct.isDestroyed()) super.dismiss();
+            } else {
+                if (mAct != null && !mAct.isFinishing()) super.dismiss();
+            }
+        }
+        catch (NullPointerException e){ Log4Android.w(this, "dismiss exception, null pointer."); }
+        catch (IllegalStateException e) { Log4Android.w(this, "dismiss exception, illegal state."); }
+    }
 }
