@@ -21,6 +21,9 @@ ext{
             disklrucache: 'com.jakewharton:disklrucache:2.0.2',
             galleryfinal: 'cn.finalteam:galleryfinal:1.4.8.7'
     ]
+    buildVars =[
+            proguard: false
+    ]
 }
 
 //    compile 'de.hdodenhof:circleimageview:2.1.0'

@@ -5,6 +5,7 @@ apply from:"HXModuleConfig.gradle"
 
 def props = project.ext.android;
 def libraries = project.ext.dependencies;
+def buildVars = project.buildVars;
 
 android {
     compileSdkVersion props.compileSdkVersion
@@ -18,8 +19,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled buildVars.proguard
+            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -67,6 +68,8 @@ dependencies {
     compile libraries.rxandroid
     compile libraries.disklrucache
     compile libraries.galleryfinal
+
+    compile 'com.cncoderx.wheelview:library:1.1.0'
 }
 
 void getDirs(List<String> list, dirs, String key){
