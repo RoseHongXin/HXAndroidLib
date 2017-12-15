@@ -27,8 +27,9 @@
     <style name="LineItem.tv_name">
         <item name="android:gravity">center_vertical|start|left</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:minWidth">@dimen/LineItem_name_minWidth</item>
+        <!--<item name="android:minWidth">@dimen/LineItem_name_minWidth</item>-->
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">4</item>
         <item name="android:textColor">@color/txt_content</item>
     </style>
     <style name="LineItem.tv_value">
