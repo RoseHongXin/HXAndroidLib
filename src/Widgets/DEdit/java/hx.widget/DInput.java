@@ -2,6 +2,7 @@ package hx.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import hx.kit.view.ViewKit;
 import hx.lib.R;
 import hx.widget.dialog.DialogHelper;
 
@@ -75,7 +77,7 @@ public class DInput extends DialogFragment{
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
-
+        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputManager(_et_edit));
     }
 
     @Override

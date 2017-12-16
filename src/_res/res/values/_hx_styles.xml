@@ -43,7 +43,7 @@
         <item name="android:textColorHint">@color/txt_content</item>
         <item name="android:gravity">center_vertical|start|left</item>
         <item name="android:textColor">@color/txt_title</item>
-        <item name="android:background">@color/_bg</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
