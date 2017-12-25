@@ -19,17 +19,8 @@ android {
     }
     buildTypes {
         release {
-<<<<<<< HEAD
             minifyEnabled buildVars.proguard
-            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-=======
-//            minifyEnabled true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
->>>>>>> 615a89366058997fff95efb0f72d3c714174105e
+            if (buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
