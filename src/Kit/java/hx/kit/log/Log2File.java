@@ -23,7 +23,7 @@ public class Log2File {
     private static final String FILE_NAME_DATE_FORMAT = "yyyy-MM-dd-HH-mm-ss";
     private static final String LOG_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     //    private static final int CACHE_QUEUE_SIZE = Integer.MAX_VALUE / 0xffff;
-    private static final int CACHE_QUEUE_SIZE = 2048;
+    private static final int CACHE_QUEUE_SIZE = 80960;
     public static final String DEFAULT_DIR = "Logs";
     private static final SimpleDateFormat mFileNameDateFormat = new SimpleDateFormat(FILE_NAME_DATE_FORMAT, Locale.CHINA);
     private static final SimpleDateFormat mLogDateFormat = new SimpleDateFormat(LOG_DATE_FORMAT, Locale.CHINA);
@@ -93,7 +93,7 @@ public class Log2File {
             fileWriter = new FileWriter(mFile, true);
             fileWriter.write(stringBuilder.toString());
             fileWriter.flush();
-            Log.v("Log2File", "Content:\n" + stringBuilder.toString());
+//            Log.v("Log2File", "Content:\n" + stringBuilder.toString());
             Log.v("Log2File", "to file:" + mFile.getAbsolutePath());
         } catch (Throwable t) {
             t.printStackTrace();

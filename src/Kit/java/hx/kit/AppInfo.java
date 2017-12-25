@@ -1,5 +1,6 @@
 package hx.kit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -99,7 +100,6 @@ public class AppInfo {
         return new Installation().id(ctx);
     }
 
-
     private static class Installation {
         private String sID =null;
         private static final String INSTALLATION = "INSTALLATION";
@@ -128,5 +128,18 @@ public class AppInfo {
             out.write(id.getBytes());
             out.close();
         }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public static String getNetSegment(Context ctx) {
+        WifiManager wifiManager = (WifiManager) ctx.getApplicationContext().getSystemService(android.content.Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        try {
+            return String.format("%d.%d.%d.", (ipAddress & 0xff), (ipAddress >> 8 & 0xff), (ipAddress >> 16 & 0xff));// .toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
