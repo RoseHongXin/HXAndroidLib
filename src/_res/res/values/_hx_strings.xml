@@ -41,6 +41,10 @@
     <string name="login_timeout">登陆超时,请重试!</string>
     <string name="login_expire">登陆失效,请重新登陆!</string>
 
-
+    <string name="HX_hour">时</string>
+    <string name="HX_minute">分</string>
+    <string name="HX_year">年</string>
+    <string name="HX_month">月</string>
+    <string name="HX_day">日</string>
 
 </resources>

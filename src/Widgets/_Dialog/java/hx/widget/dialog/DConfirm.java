@@ -17,7 +17,7 @@ public class DConfirm {
 
     public static AlertDialog showOriginal(Activity act, String title, String msg, DialogInterface.OnClickListener onClickListener){
         AlertDialog d =  new AlertDialog.Builder(act).setTitle(title)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setMessage(msg)
                 .setPositiveButton(R.string.HX_confirm, (dialog, which) -> {
                   dialog.dismiss();

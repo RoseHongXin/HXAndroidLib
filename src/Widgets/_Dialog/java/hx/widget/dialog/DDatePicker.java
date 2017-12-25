@@ -36,7 +36,7 @@ public class DDatePicker {
 
         DatePicker _dp = (DatePicker)layout.findViewById(R.id._dp_);
         Calendar calendar = Calendar.getInstance(Locale.CHINA);
-//       _dp.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), (view, year, monthOfYear, dayOfMonth) -> {});
+//       _dp.init(mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), (view, year, monthOfYear, dayOfMonth) -> {});
         if(date != null) calendar.setTime(date);
         _dp.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
