@@ -1,15 +1,10 @@
 package hx.kit.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * Created by RoseHongXin on 2017/9/15 0015.
@@ -21,12 +16,14 @@ public class ViewKit {
         Context ctx = _ets[0].getContext();
         InputMethodManager inputMgr = ((InputMethodManager)ctx.getSystemService(Context.INPUT_METHOD_SERVICE));
         for (EditText _et : _ets) {
-            boolean active = inputMgr.isActive(_et);
-            if (active) {
-                inputMgr.hideSoftInputFromWindow(_et.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                _et.clearFocus();
-                return;
-            }
+            inputMgr.hideSoftInputFromWindow(_et.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            _et.clearFocus();
+//            boolean active = inputMgr.isActive(_et);
+//            if (active) {
+//                inputMgr.hideSoftInputFromWindow(_et.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+//                _et.clearFocus();
+//                return;
+//            }
         }
     }
 
@@ -37,5 +34,16 @@ public class ViewKit {
             inputMgr.hideSoftInputFromWindow(_v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             _v.clearFocus();
         }
+    }
+
+    public static void showInputMgr(@NonNull View _v){
+        _v.requestFocus();
+        _v.postDelayed(() -> {
+            InputMethodManager inputMgr = ((InputMethodManager)_v.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE));
+//        inputMgr.showSoftInputFromInputMethod(_v.getWindowToken(), InputMethodManager.SHOW_FORCED);
+//        inputMgr.showSoftInput(_v, InputMethodManager.SHOW_FORCED);
+            inputMgr.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+        }, 100);
+
     }
 }

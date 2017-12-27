@@ -22,7 +22,7 @@ ext{
             galleryfinal: 'cn.finalteam:galleryfinal:1.4.8.7'
     ]
     buildVars =[
-            proguard: false
+            proguard: true
     ]
 }
 
