@@ -32,6 +32,7 @@ import hx.lib.R;
 
 public class DYearMonthDay extends DialogFragment{
 
+    public final static String DATE_FORMAT = "yyyy-MM-dd";
     private static final String _FORMAT = "%1$d-%2$02d-%3$02d";
     private static final int MIN_YEAR = 1990;
 
@@ -155,7 +156,7 @@ public class DYearMonthDay extends DialogFragment{
     }
     public DYearMonthDay defDate(String time){
         if(TextUtils.isEmpty(time)) return defDate(new Date());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         Date date;
         try {
             date = format.parse(time);
@@ -168,6 +169,12 @@ public class DYearMonthDay extends DialogFragment{
     public DYearMonthDay yearRange(int min, int max){
         this.mMaxYear = max;
         this.mMinYear = min;
+        return this;
+    }
+    public DYearMonthDay yearRange(int range){
+        Calendar calendar = Calendar.getInstance();
+        this.mMinYear = calendar.get(Calendar.YEAR);
+        this.mMaxYear = mMinYear + range;
         return this;
     }
 
