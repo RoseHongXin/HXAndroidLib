@@ -25,8 +25,8 @@ public class ReqParams {
      */
     public static Map<String, String> getParamsAsMap(String... data){
         Map<String, String> map = new HashMap<>();
-        //if (data == null) return map;
-        //if (data.length % 2 != 0) return map;
+        //if (mData == null) return map;
+        //if (mData.length % 2 != 0) return map;
         for (int i = 0; i < data.length / 2; i++) {
             if (TextUtils.isEmpty(data[i * 2 + 1])) continue;
             map.put(data[i * 2], data[i * 2 + 1]);
@@ -37,8 +37,8 @@ public class ReqParams {
     public static ObjectNode getParamsAsJson(String... data) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode json = mapper.createObjectNode();
-        //if (data == null) return null;
-        //if (data.length % 2 != 0) return json;
+        //if (mData == null) return null;
+        //if (mData.length % 2 != 0) return json;
         for (int i = 0; i < data.length / 2; i++) {
             if (TextUtils.isEmpty(data[i * 2 + 1])) continue;
             json.put(data[i * 2], data[i * 2 + 1]);

@@ -37,7 +37,7 @@ public class RespBase<T> {
         this.msg = msg;
     }
 
-    //sth like request is success, and data's null but has msg info.
+    //sth like request is success, and mData's null but has msg info.
     public void wrapMsgIfDataNull(){
         data = (T)msg;
     }

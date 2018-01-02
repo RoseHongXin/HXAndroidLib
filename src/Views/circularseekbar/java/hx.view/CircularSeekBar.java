@@ -522,7 +522,7 @@ public class CircularSeekBar extends View {
 
     /**
      * Set the progress of the CircularSeekBar.
-     * If the progress is the same, then any listener will not receive a onProgressChanged event.
+     * If the progress is the same, then any click will not receive a onProgressChanged event.
      * @param progress The progress to set the CircularSeekBar to.
      */
     public void setProgress(int progress) {
@@ -736,7 +736,7 @@ public class CircularSeekBar extends View {
                     }
 
                     if (lockAtStart && lockEnabled) {
-                        // TODO: Add a check if mProgress is already 0, in which case don't call the listener
+                        // TODO: Add a check if mProgress is already 0, in which case don't call the click
                         mProgress = 0;
                         recalculateAll();
                         invalidate();
@@ -1014,7 +1014,7 @@ public class CircularSeekBar extends View {
     /**
      * Set the max of the CircularSeekBar.
      * If the new max is less than the current progress, then the progress will be set to zero.
-     * If the progress is changed as a result, then any listener will receive a onProgressChanged event.
+     * If the progress is changed as a result, then any click will receive a onProgressChanged event.
      * @param max The new max for the CircularSeekBar.
      */
     public void setMax(int max) {

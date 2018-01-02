@@ -1,27 +1,48 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.butterknife'
+apply from:"HXModuleConfig.gradle"
+
+def props = project.ext.android;
+def libraries = project.ext.dependencies;
+def buildVars = project.buildVars;
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    compileSdkVersion props.compileSdkVersion
+    buildToolsVersion props.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion props.minSdkVersion
+        targetSdkVersion props.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
-//            minifyEnabled false
+<<<<<<< HEAD
+            minifyEnabled buildVars.proguard
+            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+=======
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+>>>>>>> 615a89366058997fff95efb0f72d3c714174105e
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -41,23 +62,23 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:26.0.0-alpha1'
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:percent:26.0.0-alpha1'
-    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
-    compile 'com.google.dagger:dagger:2.8'
-    compile 'com.jakewharton:butterknife:8.2.1'
-    compile 'io.reactivex:rxjava:1.0.12'
-    compile 'io.reactivex:rxandroid:0.25.0'
-    compile 'com.alibaba:fastjson:1.2.24'
-    compile 'com.alibaba:fastjson:1.1.56.android'
-    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
-    compile 'com.orhanobut:dialogplus:1.11@aar'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'cn.finalteam:galleryfinal:1.4.8.7'
-    compile 'com.jakewharton:disklrucache:2.0.2'
+
+    compile libraries.supportv4
+    compile libraries.appcompatv7
+    compile libraries.cardviewv7
+    compile libraries.design
+    compile libraries.supportPercnet
+    compile libraries.recyclerviewv7
+
+    compile libraries.butterknife
+    compile libraries.fastjson
+    compile libraries.fastjsonAndroid
+    compile libraries.rxjava
+    compile libraries.rxandroid
+    compile libraries.disklrucache
+    compile libraries.galleryfinal
+
+    compile 'com.cncoderx.wheelview:library:1.1.0'
 }
 
 void getDirs(List<String> list, dirs, String key){
@@ -68,21 +89,6 @@ void getDirs(List<String> list, dirs, String key){
         }
     }
 }
-
-
-
-//    compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
-//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
-//    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
-//compile 'cn.pedant.sweetalert:library:1.3'
-
-//    compile 'com.jakewharton.timber:timber:3.1.0'
-//    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-//    compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
-//    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
-//    compile 'com.squareup.okhttp:okhttp:2.5.0'
-//    compile 'com.squareup.okio:okio:1.6.0'
-//    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 
 //compile 'com.nineoldandroids:library:2.4.0'
 

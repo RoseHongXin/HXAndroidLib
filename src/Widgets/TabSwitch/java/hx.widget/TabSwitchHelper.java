@@ -1,5 +1,6 @@
 package hx.widget;
 
+import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class TabSwitchHelper {
         this.mListener = listener;
         return this;
     }
-    public TabSwitchHelper defualtSelectIdx(int idx){
+    public TabSwitchHelper defaultSelectIdx(@IdRes int idx){
         this.mDefaultSelectIdx = idx;
         return this;
     }

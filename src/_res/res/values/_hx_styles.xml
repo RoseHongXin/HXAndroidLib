@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+    </style>
+
     <style name="tab_theme_base" parent="Theme.AppCompat">
         <item name="android:textColorPrimary">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
@@ -34,7 +43,7 @@
         <item name="android:textColorHint">@color/txt_content</item>
         <item name="android:gravity">center_vertical|start|left</item>
         <item name="android:textColor">@color/txt_title</item>
-        <item name="android:background">@color/_bg</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
     </style>

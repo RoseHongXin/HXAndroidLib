@@ -31,11 +31,11 @@ public class DTimePicker {
 
         TimePicker _tp_ = (TimePicker)layout.findViewById(R.id._tp_);
         Calendar calendar = Calendar.getInstance(Locale.CHINA);
-       /* _dp.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), (view, year, monthOfYear, dayOfMonth) -> {
+       /* _dp.init(mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), (view, year, monthOfYear, dayOfMonth) -> {
 
         });*/
-//        _tp_.setHour(calendar.get(Calendar.HOUR_OF_DAY));
-//        _tp_.setMinute(calendar.get(Calendar.MINUTE));
+//        _tp_.setHour(mCalendar.get(Calendar.HOUR_OF_DAY));
+//        _tp_.setMinute(mCalendar.get(Calendar.MINUTE));
         _tp_.setIs24HourView(true);
         _tp_.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
         _tp_.setCurrentMinute(calendar.get(Calendar.MINUTE));
