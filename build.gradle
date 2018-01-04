@@ -3,10 +3,6 @@ apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.jakewharton.butterknife'
 apply from:"HXModuleConfig.gradle"
 
-def props = project.ext.android;
-def libraries = project.ext.dependencies;
-def buildVars = project.buildVars;
-
 android {
     compileSdkVersion props.compileSdkVersion
     buildToolsVersion props.buildToolsVersion
@@ -19,17 +15,14 @@ android {
     }
     buildTypes {
         release {
-<<<<<<< HEAD
             minifyEnabled buildVars.proguard
+            zipAlignEnabled buildVars.proguard
             if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-=======
-//            minifyEnabled true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
->>>>>>> 615a89366058997fff95efb0f72d3c714174105e
+            minifyEnabled buildVars.proguard
+            zipAlignEnabled buildVars.proguard
+            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -63,20 +56,20 @@ android {
 
 dependencies {
 
-    compile libraries.supportv4
-    compile libraries.appcompatv7
-    compile libraries.cardviewv7
-    compile libraries.design
-    compile libraries.supportPercnet
-    compile libraries.recyclerviewv7
+    compile myDependency.supportv4
+    compile myDependency.appcompatv7
+    compile myDependency.cardviewv7
+    compile myDependency.design
+    compile myDependency.supportPercnet
+    compile myDependency.recyclerviewv7
 
-    compile libraries.butterknife
-    compile libraries.fastjson
-    compile libraries.fastjsonAndroid
-    compile libraries.rxjava
-    compile libraries.rxandroid
-    compile libraries.disklrucache
-    compile libraries.galleryfinal
+    compile myDependency.butterknife
+    compile myDependency.fastjson
+    compile myDependency.fastjsonAndroid
+    compile myDependency.rxjava
+    compile myDependency.rxandroid
+    compile myDependency.disklrucache
+    compile myDependency.galleryfinal
 
     compile 'com.cncoderx.wheelview:library:1.1.0'
 }

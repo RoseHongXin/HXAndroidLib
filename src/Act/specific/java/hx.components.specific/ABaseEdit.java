@@ -1,4 +1,4 @@
-package hx.comonents.specific.edit;
+package hx.components.specific;
 
 import android.content.Intent;
 import android.os.Bundle;

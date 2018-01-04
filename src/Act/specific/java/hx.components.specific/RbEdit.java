@@ -1,4 +1,4 @@
-package hx.comonents.specific.edit;
+package hx.components.specific;
 
 /**
  * Created by RoseHongXin on 2016/5/27.
