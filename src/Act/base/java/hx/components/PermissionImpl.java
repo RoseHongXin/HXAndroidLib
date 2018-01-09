@@ -31,6 +31,9 @@ public class PermissionImpl {
         }
     }
 
+    public static boolean checkIfDenied(Activity act, String permission){
+        return ActivityCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_DENIED;
+    }
     public static boolean checkIfGranted(Activity act, String permission){
         return ActivityCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_GRANTED;
     }
