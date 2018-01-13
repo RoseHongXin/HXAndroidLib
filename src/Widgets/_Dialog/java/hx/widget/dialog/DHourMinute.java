@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 import com.cncoderx.wheelview.Wheel3DView;
+
+import java.util.Calendar;
 
 import hx.lib.R;
 
@@ -33,6 +36,13 @@ public class DHourMinute extends DialogFragment{
     private TextView _tv_anchor;
     private int mDefHour = 0, mDefMinute = 0;
 
+    public static String current(){
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+        return String.format("%1$02d:%2$02d:%3$02d", hour, minute, second);
+    }
     public static DHourMinute obtain() {
         return new DHourMinute();
     }

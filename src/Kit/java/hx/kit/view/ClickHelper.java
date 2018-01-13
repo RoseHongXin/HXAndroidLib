@@ -40,6 +40,18 @@ public class ClickHelper {
                 .show();
     }
 
+    public static void editExitConfirm(Activity act) {
+        new AlertDialog.Builder(act)
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    act.finish();
+                })
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss())
+                .setMessage(R.string.HX_finish_while_editing_confirm)
+                .create()
+                .show();
+    }
+
     public static void doubleClick(Activity act, String msg, View.OnClickListener cb){
         long cur = System.currentTimeMillis();
         if(mLastClickTime == 0 || cur - mLastClickTime < 3000) ++mClickCount;
@@ -56,4 +68,6 @@ public class ClickHelper {
     public static void doubleClick2Home(Activity act) {
         doubleClick(act, act.getString(R.string.HX_click_again_to_home), v -> act.moveTaskToBack(true));
     }
+
+
 }

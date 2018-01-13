@@ -117,9 +117,10 @@ public class DNumberPicker extends DialogFragment{
     }
     public DNumberPicker type(int type){
         if(type == TYPE_DAY){
-            mRange = new int[]{1, 31};
+            mRange = new int[]{1, 28};
             Calendar calendar = Calendar.getInstance();
-            mDefNum = calendar.get(Calendar.DAY_OF_MONTH);
+            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+            mDefNum = dayOfMonth > 28 ? 28 : dayOfMonth;
         }
         return this;
     }

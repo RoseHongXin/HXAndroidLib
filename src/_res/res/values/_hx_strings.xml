@@ -19,6 +19,7 @@
 
 
     <string name="HX_confirm_finish_current_page">确定退出当前页面?</string>
+    <string name="HX_finish_while_editing_confirm">正在编辑的信息未保存，是否立即退出？</string>
     <string name="HX_click_again_to_home">再按一次，回到桌面!</string>
     <string name="HX_socket_timeout">请求超时</string>
     <string name="HX_invalid_http_request">请求无效</string>

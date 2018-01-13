@@ -5,7 +5,9 @@
     <com.cncoderx.wheelview.Wheel3DView
         android:id="@+id/_whv_items"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/l_m_v"
+        android:layout_marginBottom="@dimen/l_m_v"/>
 
     <include layout="@layout/l_bts"/>
 
