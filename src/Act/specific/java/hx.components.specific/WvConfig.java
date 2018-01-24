@@ -1,4 +1,4 @@
-package hx.component.specific.web;
+package hx.components.specific;
 
 import android.util.Log;
 import android.webkit.WebChromeClient;

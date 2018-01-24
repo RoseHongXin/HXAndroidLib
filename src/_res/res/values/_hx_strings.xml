@@ -3,6 +3,7 @@
 
     <string name="HX_confirm">确定</string>
     <string name="HX_cancel">取消</string>
+    <string name="HX_save">保存</string>
 
     <string name="HX_camera">相机</string>
     <string name="HX_gallery">图库</string>

@@ -1,12 +1,15 @@
 package hx.components;
 
 import android.os.Bundle;
+import android.support.annotation.ArrayRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 
@@ -42,10 +45,25 @@ public abstract class FBase extends Fragment {
         this.mRefreshCb = cb;
     }
 
+    public void sSetText(TextView _tv, @StringRes int strRes, Object ... params){
+        _tv.setText(sGetText(strRes, params));
+    }
+    public String sGetText(@StringRes int strRes, Object ... params){
+        if(!isAdded() || getContext() == null) return "";
+        if(params == null || params.length == 0){
+            return getString(strRes);
+        }else{
+            return String.format(getString(strRes), params);
+        }
+    }
+    public String[] sGetStrArray(@ArrayRes int arrayRes){
+        if(!isAdded() || getContext() == null) return new String[]{"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}; //length = 16, 保证调用不会出现下标越界.
+        return getContext().getResources().getStringArray(arrayRes);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(sGetLayoutRes(), container, false);
     }
 

@@ -1,4 +1,4 @@
-package hx.component.specific.web;
+package hx.components.specific;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +25,7 @@ public abstract class ABaseWeb extends ABase {
         super.onCreate(savedInstanceState);
         _wv_ = (WebView)findViewById(R.id._wv_);
         initWv(_wv_);
+        _wv_.loadUrl(sGetUrl());
     }
 
     protected abstract String sGetUrl();

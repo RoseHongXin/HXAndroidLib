@@ -1,18 +1,18 @@
 ext{
-    android = [
+    props = [
             compileSdkVersion: 25,
             buildToolsVersion: '25.0.3',
             minSdkVersion:15,
             targetSdkVersion:25,
             dependencyVersion:'25.3.1'
     ]
-    dependencies = [
-            supportv4: 'com.android.support:support-v4:' + android.dependencyVersion,
-            appcompatv7: 'com.android.support:appcompat-v7:' + android.dependencyVersion,
-            cardviewv7: 'com.android.support:cardview-v7:' + android.dependencyVersion,
-            design: 'com.android.support:design:' + android.dependencyVersion,
-            supportPercnet: 'com.android.support:percent:' + android.dependencyVersion,
-            recyclerviewv7: 'com.android.support:recyclerview-v7:' + android.dependencyVersion,
+    libraries = [
+            supportv4: 'com.android.support:support-v4:' + props.dependencyVersion,
+            appcompatv7: 'com.android.support:appcompat-v7:' + props.dependencyVersion,
+            cardviewv7: 'com.android.support:cardview-v7:' + props.dependencyVersion,
+            design: 'com.android.support:design:' + props.dependencyVersion,
+            supportPercnet: 'com.android.support:percent:' + props.dependencyVersion,
+            recyclerviewv7: 'com.android.support:recyclerview-v7:' + props.dependencyVersion,
             butterknife: 'com.jakewharton:butterknife:8.4.0',
             fastjson: 'com.alibaba:fastjson:1.2.39',
             fastjsonAndroid: 'com.alibaba:fastjson:1.1.64.android',
