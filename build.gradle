@@ -3,10 +3,6 @@ apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.jakewharton.butterknife'
 apply from:"HXModuleConfig.gradle"
 
-def props = project.ext.android;
-def libraries = project.ext.dependencies;
-def buildVars = project.buildVars;
-
 android {
     compileSdkVersion props.compileSdkVersion
     buildToolsVersion props.buildToolsVersion
@@ -20,6 +16,12 @@ android {
     buildTypes {
         release {
             minifyEnabled buildVars.proguard
+            zipAlignEnabled buildVars.proguard
+            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled buildVars.proguard
+            zipAlignEnabled buildVars.proguard
             if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

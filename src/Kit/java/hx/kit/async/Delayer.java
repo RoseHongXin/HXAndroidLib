@@ -4,6 +4,13 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.util.SparseArray;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import rx.internal.util.unsafe.ConcurrentCircularArrayQueue;
 
 /**
  * Created by RoseHongXin on 2017/9/5 0005.
@@ -18,6 +25,8 @@ public class Delayer {
 
     private Handler mHandler;
     private Handler mMainLoopHandler;
+    private CopyOnWriteArrayList<DelayCallback> mCbs = new CopyOnWriteArrayList<>();
+
 
     private static Delayer mInstance;
     private Delayer(){
@@ -30,18 +39,25 @@ public class Delayer {
                 switch (msg.what){
                     case MSG_TIME_UP:
                         DelayCallback delayCallback = (DelayCallback) msg.obj;
+                        if(!mCbs.contains(delayCallback)) return;
                         mMainLoopHandler.post(delayCallback::onTimeUp);
+                        removeMessages(MSG_TIME_UP, delayCallback);
+                        mCbs.remove(delayCallback);
                         break;
                     case MSG_TICK:
                         final int remain = (msg.arg1 - 1);
                         TickCallback tickCallback = (TickCallback)msg.obj;
+                        if(!mCbs.contains(tickCallback)){
+                            return;
+                        }
                         if(remain < 0) {
-                            removeMessages(MSG_TICK);
                             mMainLoopHandler.post(tickCallback::onTimeUp);
+                            removeMessages(MSG_TICK, tickCallback);
+                            mCbs.remove(tickCallback);
                             return;
                         }
                         mMainLoopHandler.post(() -> tickCallback.onTick(remain));
-                        Message message = obtainMessage();
+                        Message message = new Message();
                         message.what = MSG_TICK;
                         message.arg1 = remain;
                         message.obj = msg.obj;
@@ -62,23 +78,30 @@ public class Delayer {
         delay(cb, DEFAULT_DELAY);
     }
     public void delay(DelayCallback cb, long delay){
-        Message msg = mHandler.obtainMessage();
+        mCbs.add(cb);
+        Message msg = new Message();
         msg.obj = cb;
         msg.what = MSG_TIME_UP;
         mHandler.sendMessageDelayed(msg, delay);
     }
 
     public void tick(int time, TickCallback cb){
-        Message msg = mHandler.obtainMessage();
+        mCbs.add(cb);
+        Message msg = new Message();
         msg.obj = cb;
         msg.what = MSG_TICK;
         msg.arg1 = (time + 1);
         mHandler.sendMessage(msg);
-//        msg.arg1 = time;
-//        mHandler.sendMessageDelayed(msg, DEFAULT_DELAY);
     }
 
-    public interface DelayCallback{
+    public void cancel(DelayCallback cb){
+        mCbs.remove(cb);
+    }
+    public boolean ticking(DelayCallback cb){
+        return mCbs.contains(cb) && mHandler.hasMessages(MSG_TICK, cb);
+    }
+
+    public interface DelayCallback {
         void onTimeUp();
     }
     public interface TickCallback extends DelayCallback{

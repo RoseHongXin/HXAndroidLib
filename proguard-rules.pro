@@ -123,6 +123,7 @@
 
 ##  HXAnroidLib
 -keep public class hx.components.**{*;}
+-keep public class * extends hx.components.specific.ABaseWeb{*;}
 -keep public class hx.kit.**{*;}
 -keep public class hx.view.**{*;}
 -keep public class hx.widget.**{*;}
