@@ -19,6 +19,7 @@ import hx.lib.R;
  * Created by rose on 16-8-12.
  */
 
+@Deprecated
 public abstract class ABase extends AppCompatActivity {
 
     private ViewGroup mLayout;

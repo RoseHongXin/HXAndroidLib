@@ -20,8 +20,8 @@
         <item name="android:paddingRight">@dimen/l_p_small</item>
         <!--<item name="android:paddingTop">@dimen/tb_padding_vertical</item>-->
         <!--<item name="android:paddingBottom">@dimen/tb_padding_vertical</item>-->
-        <!--<item name="android:background">@color/colorPrimary</item>-->
-        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <!--<item name="android:background">?attr/colorPrimary</item>-->
     </style>
     <style name="tb_item">
         <item name="android:layout_height">@dimen/tb_height</item>
