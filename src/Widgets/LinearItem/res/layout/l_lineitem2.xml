@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView android:id="@+id/_tv_lineItemLeft" style="@style/LinearItem_item" android:layout_gravity="start|center_vertical"
+              tools:drawableLeft="@android:drawable/ic_menu_rotate"/>
+    <TextView android:id="@+id/_tv_lineItemRight" style="@style/LinearItem_item" android:layout_gravity="end|center_vertical"
+              tools:drawableRight="@android:drawable/ic_menu_rotate"/>
+
+</merge>

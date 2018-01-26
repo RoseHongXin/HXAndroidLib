@@ -21,7 +21,7 @@
         <item name="android:paddingBottom">@dimen/l_p_v</item>
     </style>
     <style name="RvItem.Corner">
-        <item name="cardCornerRadius">8dp</item>
+        <item name="cardCornerRadius">@dimen/l_corner</item>
         <item name="cardUseCompatPadding">true</item>
         <!--<item name="contentPaddingLeft">@dimen/l_p_h</item>-->
         <!--<item name="contentPaddingRight">@dimen/l_p_h</item>-->

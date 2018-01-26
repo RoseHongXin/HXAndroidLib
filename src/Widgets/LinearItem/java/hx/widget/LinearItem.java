@@ -7,7 +7,7 @@ import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -22,33 +22,31 @@ import hx.lib.R;
 
 public class LinearItem extends FrameLayout {
 
-    final private int NOTHING_SET = -1;
+    final static private int NOTHING_SET = -1;
 
-    ImageView _tb_iv_left;
-    TextView _tb_tv_left;
-    ImageView _tb_iv_right;
-    TextView _tb_tv_right;
+    private ImageView _iv_itemLeft;
+    private TextView _tv_itemLeft;
+    private ImageView _iv_itemRight;
+    private TextView _tv_itemRight;
 
     @DrawableRes int iconLeft, iconRight;
-    int iconSizeLeft, iconSizeRight;
     @ColorInt int textColorLeft, textColorRight;
+    int iconSizeLeft, iconSizeRight;
     int textSizeLeft, textSizeRight;
     String textLeft, textRight;
     int gapLeft, gapRight, paddingHorizontal, paddingVertical;
-    View layout;
-
 
     public ImageView _iv_left() {
-        return _tb_iv_left;
+        return _iv_itemLeft;
     }
     public ImageView _iv_right() {
-        return _tb_iv_right;
+        return _iv_itemRight;
     }
     public TextView _tv_left() {
-        return _tb_tv_left;
+        return _tv_itemLeft;
     }
     public TextView _tv_right() {
-        return _tb_tv_right;
+        return _tv_itemRight;
     }
 
     public int getPaddingHorizontal() {
@@ -56,8 +54,6 @@ public class LinearItem extends FrameLayout {
     }
     public void setPaddingHorizontal(int paddingHorizontal) {
         this.paddingHorizontal = paddingHorizontal;
-//        layout.setPadding(paddingHorizontal, getPaddingTop(), paddingHorizontal, getPaddingBottom());
-//        requestLayout();
         setPadding(paddingHorizontal, getPaddingTop(), paddingHorizontal, getPaddingBottom());
     }
     public int getPaddingVertical() {
@@ -65,8 +61,6 @@ public class LinearItem extends FrameLayout {
     }
     public void setPaddingVertical(int paddingVertical) {
         this.paddingVertical = paddingVertical;
-//        layout.setPadding(getPaddingLeft(), paddingVertical, getPaddingRight(), paddingVertical);
-//        requestLayout();
         setPadding(getPaddingLeft(), paddingVertical, getPaddingRight(), paddingVertical);
     }
     public int getGapLeft() {
@@ -74,54 +68,54 @@ public class LinearItem extends FrameLayout {
     }
     public void setGapLeft(int gapLeft) {
         this.gapLeft = gapLeft;
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) _tb_iv_left.getLayoutParams();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) _iv_itemLeft.getLayoutParams();
         params.rightMargin = gapLeft;
-        _tb_iv_left.setLayoutParams(params);
+        _iv_itemLeft.setLayoutParams(params);
     }
     public int getGapRight() {
         return gapRight;
     }
     public void setGapRight(int gapRight) {
         this.gapRight = gapRight;
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) _tb_tv_right.getLayoutParams();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) _tv_itemRight.getLayoutParams();
         params.rightMargin = gapRight;
-        _tb_tv_right.setLayoutParams(params);
+        _tv_itemRight.setLayoutParams(params);
     }
     @DrawableRes public int getIconLeft() {
         return iconLeft;
     }
     public void setIconLeft(@DrawableRes int iconLeft) {
         this.iconLeft = iconLeft;
-        _tb_iv_left.setVisibility(VISIBLE);
-        _tb_iv_left.setImageResource(iconLeft);
+        _iv_itemLeft.setVisibility(VISIBLE);
+        _iv_itemLeft.setImageResource(iconLeft);
     }
     @DrawableRes public int getIconRight() {
         return iconRight;
     }
     public void setIconRight(@DrawableRes int iconRight) {
         this.iconRight = iconRight;
-        _tb_iv_right.setVisibility(VISIBLE);
-        _tb_iv_right.setImageResource(iconRight);
+        _iv_itemRight.setVisibility(VISIBLE);
+        _iv_itemRight.setImageResource(iconRight);
     }
     public int getIconSizeLeft() {
         return iconSizeLeft;
     }
     public void setIconSizeLeft(int iconSizeLeft) {
         this.iconSizeLeft = iconSizeLeft;
-        ViewGroup.LayoutParams params = _tb_iv_left.getLayoutParams();
+        ViewGroup.LayoutParams params = _iv_itemLeft.getLayoutParams();
         params.width = iconSizeLeft;
         params.height = iconSizeLeft;
-        _tb_iv_left.setLayoutParams(params);
+        _iv_itemLeft.setLayoutParams(params);
     }
     public int getIconSizeRight() {
         return iconSizeRight;
     }
     public void setIconSizeRight(int iconSizeRight) {
         this.iconSizeRight = iconSizeRight;
-        ViewGroup.LayoutParams params = _tb_iv_right.getLayoutParams();
+        ViewGroup.LayoutParams params = _iv_itemRight.getLayoutParams();
         params.width = iconSizeRight;
         params.height = iconSizeRight;
-        _tb_iv_right.setLayoutParams(params);
+        _iv_itemRight.setLayoutParams(params);
     }
 
     public int getTextColorLeft() {
@@ -129,44 +123,44 @@ public class LinearItem extends FrameLayout {
     }
     public void setTextColorLeft(int textColorLeft) {
         this.textColorLeft = textColorLeft;
-        _tb_tv_left.setTextColor(textColorLeft);
+        _tv_itemLeft.setTextColor(textColorLeft);
     }
     public int getTextColorRight() {
         return textColorRight;
     }
     public void setTextColorRight(int textColorRight) {
         this.textColorRight = textColorRight;
-        _tb_tv_right.setTextColor(textColorRight);
+        _tv_itemRight.setTextColor(textColorRight);
     }
     public String getTextLeft() {
         return textLeft;
     }
     public void setTextLeft(String textLeft) {
         this.textLeft = textLeft;
-        _tb_tv_left.setVisibility(VISIBLE);
-        _tb_tv_left.setText(textLeft);
+        _tv_itemLeft.setVisibility(VISIBLE);
+        _tv_itemLeft.setText(textLeft);
     }
     public String getTextRight() {
         return textRight;
     }
     public void setTextRight(String textRight) {
         this.textRight = textRight;
-        _tb_tv_right.setVisibility(VISIBLE);
-        _tb_tv_right.setText(textRight);
+        _tv_itemRight.setVisibility(VISIBLE);
+        _tv_itemRight.setText(textRight);
     }
     public int getTextSizeLeft() {
         return textSizeLeft;
     }
     public void setTextSizeLeft(int textSizeLeft) {
         this.textSizeLeft = textSizeLeft;
-        _tb_tv_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeLeft);
+        _tv_itemLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeLeft);
     }
     public int getTextSizeRight() {
         return textSizeRight;
     }
     public void setTextSizeRight(int textSizeRight) {
         this.textSizeRight = textSizeRight;
-        _tb_tv_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeRight);
+        _tv_itemRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeRight);
     }
 
     public void setText(String text){
@@ -192,13 +186,11 @@ public class LinearItem extends FrameLayout {
     }
 
     private void init(Context ctx, AttributeSet attrs){
-        View layout = inflate(ctx, R.layout.l_lineitem, null);
-        addView(layout);
-        this.layout = layout;
-        _tb_iv_left = (ImageView)findViewById(R.id._tb_iv_left);
-        _tb_tv_left = (TextView)findViewById(R.id._tb_tv_left);
-        _tb_iv_right = (ImageView)findViewById(R.id._tb_iv_right);
-        _tb_tv_right = (TextView)findViewById(R.id._tb_tv_right);
+        LayoutInflater.from(ctx).inflate(R.layout.l_lineitem, this, true);
+        _iv_itemLeft = (ImageView)findViewById(R.id._iv_lineItemLeft);
+        _tv_itemLeft = (TextView)findViewById(R.id._tv_lineItemLeft);
+        _iv_itemRight = (ImageView)findViewById(R.id._iv_lineItemRight);
+        _tv_itemRight = (TextView)findViewById(R.id._tv_lineItemRight);
 
         TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.LinearItem);
 
