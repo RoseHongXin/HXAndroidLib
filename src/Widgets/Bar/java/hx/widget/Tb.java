@@ -21,6 +21,7 @@ import hx.lib.R;
  * Created by rose on 16-8-12.
  */
 
+@Deprecated
 public class Tb {
 
     public static <ACT extends ABase> View createOnlyTitle(ACT act, String title){
