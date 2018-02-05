@@ -16,15 +16,18 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by RoseHongXin on 2017/9/5 0005.
+ *
+ * Meizu 5.0 dir 不能写Logs
+ *
  */
 
 public class Log2File {
 
-    private static final String FILE_NAME_DATE_FORMAT = "yyyy-MM-dd-HH-mm-ss";
+    private static final String FILE_NAME_DATE_FORMAT = "yyyy_MM_dd_HH_mm_ss";
     private static final String LOG_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     //    private static final int CACHE_QUEUE_SIZE = Integer.MAX_VALUE / 0xffff;
     private static final int CACHE_QUEUE_SIZE = 80960;
-    public static final String DEFAULT_DIR = "Logs";
+    public static final String DEFAULT_DIR = "_Logs";
     private static final SimpleDateFormat mFileNameDateFormat = new SimpleDateFormat(FILE_NAME_DATE_FORMAT, Locale.CHINA);
     private static final SimpleDateFormat mLogDateFormat = new SimpleDateFormat(LOG_DATE_FORMAT, Locale.CHINA);
 
@@ -46,8 +49,11 @@ public class Log2File {
         init(DEFAULT_DIR);
     }
     public static void init(String dir){
+//        if(dir != null && dir.charAt(dir.length() - 1) != '/') dir = dir + "/";
         mDir = dir;
         String path = getPath(TextUtils.isEmpty(mDir) ? DEFAULT_DIR : DEFAULT_DIR + File.separator + mDir);
+        File dirFile = new File(path);
+        if(!dirFile.exists()) dirFile.mkdirs();
         mFile = new File(path, mFileNameDateFormat.format(new Date()) + ".log");
         Log4Android.v("Log2File", "Init log file: " + mFile.getAbsolutePath());
     }
