@@ -22,10 +22,9 @@ import static hx.components.IConstants.*;
 
 public abstract class FBase extends Fragment {
 
-    int mExpire;
-    boolean mIsVisibleToUser = false;
+    int mExpireThreshold;
     int mPageVisibleCount = 1;
-    long mPageLastValidTimeMillis = 0;
+    long mPageLastVisibleTime = 0;
 
     protected IRefreshCb mRefreshCb;
 
@@ -33,15 +32,15 @@ public abstract class FBase extends Fragment {
 
     public void sRegisterRefreshCb(IRefreshCb cb){
         this.mRefreshCb = cb;
-        this.mExpire = PAGE_DEFAULT_EXPIRE;
+        this.mExpireThreshold = PAGE_DEFAULT_EXPIRE;
     }
     public void sRegisterRefreshCb(IRefreshCb cb, int expire){
         this.mRefreshCb = cb;
-        if(mExpire <= 0) this.mExpire = PAGE_DEFAULT_EXPIRE;
-        else this.mExpire = expire;
+        if(mExpireThreshold <= 0) this.mExpireThreshold = PAGE_DEFAULT_EXPIRE;
+        else this.mExpireThreshold = expire;
     }
     public void sRegisterLoadCb(IRefreshCb cb){
-        this.mPageLastValidTimeMillis = PAGE_NO_EXPIRE;
+        this.mPageLastVisibleTime = PAGE_NO_EXPIRE;
         this.mRefreshCb = cb;
     }
 
@@ -73,42 +72,39 @@ public abstract class FBase extends Fragment {
         ButterKnife.bind(this, view);
     }
 
-    protected boolean ifNeedRefreshPage(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkIfNeedRefreshPage();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean mIsVisibleToUser) {
+        super.setUserVisibleHint(mIsVisibleToUser);
+        checkIfNeedRefreshPage();
+    }
+
+    protected void checkIfNeedRefreshPage(){
         //解决fragment嵌套,父fragment的visible属性不能下放到子fragment的情况.
         boolean curFraVisible = getUserVisibleHint();
         boolean parentFraVisible = getParentFragment() == null || getParentFragment().getUserVisibleHint();
-        mIsVisibleToUser = curFraVisible && parentFraVisible;
-        if(mIsVisibleToUser && mRefreshCb != null) {
-            if(mPageLastValidTimeMillis == PAGE_NO_EXPIRE) return true;
+        boolean refresh = false;
+        if(curFraVisible && parentFraVisible) {
+            if(mPageLastVisibleTime == PAGE_NO_EXPIRE) refresh = true;
             else if (mPageVisibleCount == 1) {
-                mPageLastValidTimeMillis = System.currentTimeMillis();
+                mPageLastVisibleTime = System.currentTimeMillis();
                 ++mPageVisibleCount;
-                return true;
+                refresh = true;
             } else {
                 long cur = System.currentTimeMillis();
-                if((cur - mPageLastValidTimeMillis) > mExpire){
+                if((cur - mPageLastVisibleTime) > mExpireThreshold){
                     mPageVisibleCount = 0;
-                    mPageLastValidTimeMillis = cur;
-                    return true;
+                    mPageLastVisibleTime = cur;
+                    refresh = true;
                 }
                 ++mPageVisibleCount;
             }
         }
-        return false;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(ifNeedRefreshPage()) mRefreshCb.onRefresh();
-    }
-
-    //called by viewpager if it is the container of those fragments, and called every time page switch
-    //but if a fragment inside a fragment, it won't be called. ?????
-    @Override
-    public void setUserVisibleHint(boolean mIsVisibleToUser) {
-        super.setUserVisibleHint(mIsVisibleToUser);
-        this.mIsVisibleToUser = mIsVisibleToUser;
-        if(ifNeedRefreshPage()) mRefreshCb.onRefresh();
+        if(refresh && mRefreshCb != null) mRefreshCb.onRefresh();
     }
 }

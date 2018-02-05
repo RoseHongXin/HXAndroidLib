@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,13 +33,8 @@ import hx.lib.R;
 
 public class DYearMonthDay extends DialogFragment{
 
+    public final static String DATE_FORMAT = "yyyy-MM-dd";
     private static final String _FORMAT = "%1$d-%2$02d-%3$02d";
-    private static final int MIN_YEAR = 1990;
-
-    private static int[] USUAL_MONTH_DAYS = new int[]{1, 30};
-    private static int[] MAX_MONTH_DAYS = new int[]{1, 31};
-    private static int[] USUAL_MONTH_2_DAYS = new int[]{1, 28};
-    private static int[] USUAL_MONTH_2_LEAP_DAYS = new int[]{1, 29};
 
     private Wheel3DView _whv_year;
     private Wheel3DView _whv_month;
@@ -49,6 +45,23 @@ public class DYearMonthDay extends DialogFragment{
     private int mYear = -1, mMonthIdx = -1, mDay = -1;
     private int mMaxYear = 2020, mMinYear = 1990;
     Calendar mCalendar = Calendar.getInstance();
+
+    public static String current(){
+        Calendar calendar = Calendar.getInstance();
+        return DateFormat.format(DATE_FORMAT, calendar.getTime()).toString();
+    }
+    public static String format(String time){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+        String dateStr = "----";
+        try {
+            Date date = simpleDateFormat.parse(time);
+            dateStr = DateFormat.format(DATE_FORMAT, date).toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            dateStr = "----";
+        }
+        return dateStr;
+    }
 
     public static DYearMonthDay obtain() {
         return new DYearMonthDay();
@@ -105,10 +118,12 @@ public class DYearMonthDay extends DialogFragment{
                 _tv_anchor.setText(time);
                 _tv_anchor.setTag(time);
             }
-            mCalendar.set(Calendar.YEAR, mYear);
-            mCalendar.set(Calendar.MONTH, mMonthIdx);
-            mCalendar.set(Calendar.DAY_OF_MONTH, day);
-            mCb.onSelect(mYear, month, day, mCalendar.getTime());
+            if(mCb != null) {
+                mCalendar.set(Calendar.YEAR, mYear);
+                mCalendar.set(Calendar.MONTH, mMonthIdx);
+                mCalendar.set(Calendar.DAY_OF_MONTH, day);
+                mCb.onSelect(mYear, month, day, mCalendar.getTime());
+            }
             dismiss();
         });
         _whv_year.setOnWheelChangedListener((wheelView, from, to) -> {
@@ -155,7 +170,7 @@ public class DYearMonthDay extends DialogFragment{
     }
     public DYearMonthDay defDate(String time){
         if(TextUtils.isEmpty(time)) return defDate(new Date());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         Date date;
         try {
             date = format.parse(time);
@@ -168,6 +183,12 @@ public class DYearMonthDay extends DialogFragment{
     public DYearMonthDay yearRange(int min, int max){
         this.mMaxYear = max;
         this.mMinYear = min;
+        return this;
+    }
+    public DYearMonthDay yearRange(int range){
+        Calendar calendar = Calendar.getInstance();
+        this.mMinYear = calendar.get(Calendar.YEAR);
+        this.mMaxYear = mMinYear + range;
         return this;
     }
 

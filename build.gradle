@@ -56,20 +56,20 @@ android {
 
 dependencies {
 
-    compile myDependency.supportv4
-    compile myDependency.appcompatv7
-    compile myDependency.cardviewv7
-    compile myDependency.design
-    compile myDependency.supportPercnet
-    compile myDependency.recyclerviewv7
+    compile libraries.supportv4
+    compile libraries.appcompatv7
+    compile libraries.cardviewv7
+    compile libraries.design
+    compile libraries.supportPercnet
+    compile libraries.recyclerviewv7
 
-    compile myDependency.butterknife
-    compile myDependency.fastjson
-    compile myDependency.fastjsonAndroid
-    compile myDependency.rxjava
-    compile myDependency.rxandroid
-    compile myDependency.disklrucache
-    compile myDependency.galleryfinal
+    compile libraries.butterknife
+    compile libraries.fastjson
+    compile libraries.fastjsonAndroid
+    compile libraries.rxjava
+    compile libraries.rxandroid
+    compile libraries.disklrucache
+    compile libraries.galleryfinal
 
     compile 'com.cncoderx.wheelview:library:1.1.0'
 }
