@@ -58,18 +58,18 @@ public class Log2File {
         Log4Android.v("Log2File", "Init log file: " + mFile.getAbsolutePath());
     }
 
-    public static void e(Object obj, String msg){ write2File("--e--" + obj.getClass().getName(), msg);}
-    public static void w(Object obj, String msg){ write2File("--w--" + obj.getClass().getName(), msg);}
-    public static void i(Object obj, String msg){ write2File("--i--" + obj.getClass().getName(), msg);}
-    public static void d(Object obj, String msg){ write2File("--d--" + obj.getClass().getName(), msg);}
-    public static void v(Object obj, String msg){ write2File("--v--" + obj.getClass().getName(), msg);}
-    public static void sysout(Object obj, String msg){ write2File("--s--" + obj.getClass().getName(), msg);}
+    public static void e(Object obj, String msg){ write2File("--e--" + obj, msg);}
+    public static void w(Object obj, String msg){ write2File("--w--" + obj, msg);}
+    public static void i(Object obj, String msg){ write2File("--i--" + obj, msg);}
+    public static void d(Object obj, String msg){ write2File("--d--" + obj, msg);}
+    public static void v(Object obj, String msg){ write2File("--v--" + obj, msg);}
+    public static void sysout(Object obj, String msg){ write2File("--s--" + obj, msg);}
 
 
-    private static void write2File(final String tag, final String msg) {
+    private static void write2File(final Object tag, final String msg) {
         sLogExecutor.execute(() -> {
 //            String logMsg = String.format(Locale.CHINA, "%s pid=%d %s: %s\n", mLogDateFormat.format(new Date()), android.os.Process.myPid(), tag, msg);
-            String logMsg = String.format(Locale.CHINA, "%s|%s: %s\n", mLogDateFormat.format(new Date()), tag, msg);
+            String logMsg = String.format(Locale.CHINA, "%s|%s: %s\n", mLogDateFormat.format(new Date()), (tag instanceof String ? (String)tag : tag.getClass().getName()), msg);
             sMsgQueue.add(logMsg);
             if (sMsgQueue.size() >= CACHE_QUEUE_SIZE) {
                 flush2File();

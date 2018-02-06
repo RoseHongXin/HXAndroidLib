@@ -58,7 +58,7 @@ public abstract class ApBase<Vh extends VhBase<T>, T> extends RecyclerView.Adapt
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return mDatas == null ? 0 : mDatas.size();
     }
 
     public void setData(List<T> datas){
