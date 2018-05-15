@@ -1,5 +1,7 @@
 package hx.kit.data;
 
+import android.text.TextUtils;
+
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -8,12 +10,17 @@ import java.util.regex.Pattern;
  */
 public class Formater {
 
-    public static final String EMAIL_FORMAT = "^([a-zA-Z0-9_\\.\\-])+(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})$";
-    public static final String MOBILE_FORMAT = "^(13[0-9]|15[^4]|17[0,6,7,8]|18[0-9]|14[5,7])\\d{8}$";
+    private static final String EMAIL_FORMAT = "^([a-zA-Z0-9_\\.\\-])+(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})$";
+    private static final String MOBILE_FORMAT = "^(13[0-9]|15[^4]|17[0,6,7,8]|18[0-9]|14[5,7])\\d{8}$";
     public static final String PHONE_FORMAT = "0\\d{2,3}-?\\d{5,9}|0\\d{2,3}-?\\d{5,9}|\\d{8}";
     public static final String QQ_FORMAT = "\\d{5,11}";
 
-    public static final String ID_FORMAT = "^[1-9][0-9]{5}(19[0-9]{2}|200[0-9]|2010)(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{3}[0-9xX]$";
+    private static final String ID_FORMAT = "^[1-9][0-9]{5}(19[0-9]{2}|200[0-9]|2010)(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{3}[0-9xX]$";
+
+    private static final String IP_FORMAT = "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+            "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+            "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+            "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])";
 
     public static boolean isMobile(String mobile){
         return Pattern.compile(MOBILE_FORMAT).matcher(mobile).matches();
@@ -44,6 +51,9 @@ public class Formater {
 
     public static String getIpAddress(int ipVal){
         return String.format(Locale.CHINA, "%d.%d.%d.%d", (ipVal & 0xff), (ipVal >> 8 & 0xff), (ipVal >> 16 & 0xff), (ipVal >> 24 & 0xff));
+    }
+    public static boolean isIpAddr(String ip){
+        return !TextUtils.isEmpty(ip) && Pattern.compile(IP_FORMAT).matcher(ip).matches();
     }
 
 }

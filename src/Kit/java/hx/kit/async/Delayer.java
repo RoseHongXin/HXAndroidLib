@@ -1,24 +1,22 @@
 package hx.kit.async;
 
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
-import android.util.SparseArray;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import rx.internal.util.unsafe.ConcurrentCircularArrayQueue;
 
 /**
  * Created by RoseHongXin on 2017/9/5 0005.
+ *
+ *
  */
 
 public class Delayer {
 
-    private static final int DEFAULT_DELAY = 1000;
+    private static final int ONE_SECOND = 1000;
 
     private static final int MSG_TIME_UP = 0xff01;
     private static final int MSG_TICK = 0xff02;
@@ -61,7 +59,7 @@ public class Delayer {
                         message.what = MSG_TICK;
                         message.arg1 = remain;
                         message.obj = msg.obj;
-                        sendMessageDelayed(message, DEFAULT_DELAY);
+                        sendMessageDelayed(message, ONE_SECOND);
                         break;
                 }
             }
@@ -75,7 +73,7 @@ public class Delayer {
     }
 
     public void delay(DelayCallback cb){
-        delay(cb, DEFAULT_DELAY);
+        delay(cb, ONE_SECOND);
     }
     public void delay(DelayCallback cb, long delay){
         mCbs.add(cb);
@@ -83,6 +81,15 @@ public class Delayer {
         msg.obj = cb;
         msg.what = MSG_TIME_UP;
         mHandler.sendMessageDelayed(msg, delay);
+
+        /*new CountDownTimer(delay, ONE_SECOND) {
+            @Override public void onTick(long millisUntilFinished) {}
+            @Override public void onFinish() {
+                if(!mCbs.contains(cb)) return;
+                mMainLoopHandler.post(cb::onTimeUp);
+                mCbs.remove(cb);
+            }
+        }.start();*/
     }
 
     public void tick(int time, TickCallback cb){
@@ -92,6 +99,25 @@ public class Delayer {
         msg.what = MSG_TICK;
         msg.arg1 = (time + 1);
         mHandler.sendMessage(msg);
+
+        /*new CountDownTimer(time * ONE_SECOND, ONE_SECOND) {
+            @Override public void onTick(long millisUntilFinished) {
+                int remain = (int)(millisUntilFinished / ONE_SECOND);
+                if(!mCbs.contains(cb)){
+                    cancel();
+                    return;
+                }
+                mMainLoopHandler.post(() -> cb.onTick(remain));
+            }
+            @Override public void onFinish() {
+                if(!mCbs.contains(cb)) {
+                    cancel();
+                    return;
+                }
+                mMainLoopHandler.post(cb::onTimeUp);
+                mCbs.remove(cb);
+            }
+        }.start();*/
     }
 
     public void cancel(DelayCallback cb){

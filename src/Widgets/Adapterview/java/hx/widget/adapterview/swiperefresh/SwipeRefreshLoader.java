@@ -44,7 +44,7 @@ public class SwipeRefreshLoader extends BaseSwipeRefreshLoader {
         if(api != null) {
             _src.setOnRefreshListener(() -> {
                 api.get(mFistPageIdx)
-                        .takeWhile(this::dataIsReady)
+//                        .takeWhile(this::dataIsReady)
                         .doOnCompleted(() -> _src.setRefreshing(false))
                         .subscribe(datas -> {
                             mCurPage = mFistPageIdx;

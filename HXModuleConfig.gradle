@@ -1,10 +1,10 @@
 ext{
     props = [
-            compileSdkVersion: 25,
-            buildToolsVersion: '25.0.3',
+            compileSdkVersion: 27,
+            buildToolsVersion: '27.0.3',
             minSdkVersion:15,
-            targetSdkVersion:25,
-            dependencyVersion:'25.3.1'
+            targetSdkVersion:27,
+            dependencyVersion:'27.1.0'
     ]
     libraries = [
             supportv4: 'com.android.support:support-v4:' + props.dependencyVersion,
@@ -13,9 +13,9 @@ ext{
             design: 'com.android.support:design:' + props.dependencyVersion,
             supportPercnet: 'com.android.support:percent:' + props.dependencyVersion,
             recyclerviewv7: 'com.android.support:recyclerview-v7:' + props.dependencyVersion,
-            butterknife: 'com.jakewharton:butterknife:8.4.0',
-            fastjson: 'com.alibaba:fastjson:1.2.39',
-            fastjsonAndroid: 'com.alibaba:fastjson:1.1.64.android',
+            butterknife: 'com.jakewharton:butterknife:8.8.1',
+            fastjson: 'com.alibaba:fastjson:1.2.46',
+            fastjsonAndroid: 'com.alibaba:fastjson:1.1.68.android',
             rxjava: 'io.reactivex:rxjava:1.0.12',
             rxandroid: 'io.reactivex:rxandroid:0.25.0',
             disklrucache: 'com.jakewharton:disklrucache:2.0.2',
